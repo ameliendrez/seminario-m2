@@ -48,6 +48,7 @@ class CustomerCredit
         \Magento\Payment\Model\Method\Logger $logger,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+
         array $data = []
     ) {
         //Me traigo por injección de dependencia la sesión del usuario
@@ -61,13 +62,18 @@ class CustomerCredit
     public function isAvailable(\Magento\Quote\Api\Data\CartInterface $quote = null)
     {
         $isAvailable = parent::isAvailable($quote);
+        $cart = $quote->getData('base_grand_total');
+        $montoMaximo = $this->_scopeConfig->getValue('payment/customer_credit/montoMaximo');
 
         //Si ya viene habilitado el método (verificando si está activo)
         if($isAvailable){
-            //Tomo el valor de si tiene habilitado el credito o no para saber si lo muestro
-            $isAvailable = (bool) $this->customerSession->getCustomer()->getData('enable_customer_credit');
+          //Si tiene habilitado el metodo, Compruebo si tiene habilitado el credito
+          $isAvailable = (bool) $this->customerSession->getCustomer()->getData('enable_customer_credit');
+          if ($isAvailable) {
+            //Si tiene habilitado el credito, Compruebo que el valor del carro es menor al monto maximo estipulado
+              $isAvailable = $cart<=$montoMaximo;
+          }
         }
-
         return $isAvailable;
     }
 }

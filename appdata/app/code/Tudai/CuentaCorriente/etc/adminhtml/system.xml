@@ -11,6 +11,13 @@
                 <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Title</label>
                 </field>
+                <field id="montoMaximo" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Monto Maximo</label>
+                </field>
+                <!-- <field id="max_order_total" translate="label" type="text" sortOrder="99" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Maximum Order Total</label>
+                </field>  Con este codigo, magento lo hace solo-->
+
                 <field id="model" />
             </group>
         </section>

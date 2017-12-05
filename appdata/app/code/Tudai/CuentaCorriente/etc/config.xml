@@ -6,6 +6,8 @@
                 <active>1</active>
                 <model>Tudai\CuentaCorriente\Model\CustomerCredit</model>
                 <title>Cuenta Corriente</title>
+                <montoMaximo>1000</montoMaximo>
+                <!-- <max_order_total>1000</max_order_total> Con este codigo, magento lo hace solo--> 
                 <group>tudai-payment</group>
             </customer_credit>
         </payment>
